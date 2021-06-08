@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ReSchedule
 {
-    class Show
+    class Shows
     {
         public static void entry(Entry[] entries)
         {
@@ -17,8 +13,8 @@ namespace ReSchedule
             {
                 Console.WriteLine("\t[" + entry.getKey() + "] - " + entry.getName());
             }
+            Console.WriteLine("\n");
         }
-
         public static void delay(string words)
         {
             Console.Clear();

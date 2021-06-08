@@ -1,21 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReSchedule
 {
     public class Tugas : Def1, Thing
     {
-        private int Id;
+        private int ID;
+        private int UserId;
         private string Name;
         private int Duration;
         private string deadline;
-        public int ID
+        public int userId
         {
-            get { return Id; }
-            set { Id = value; }
+            get { return UserId; }
+            set { UserId = User.getId(); }
+        }
+        public int Id
+        {
+            get { return ID; }
+            set { ID = value; }
         }
         public string Nama
         {
@@ -32,12 +34,14 @@ namespace ReSchedule
             get { return deadline; }
             set 
             {
-                deadline = Func.GetDeadl(Durasi);
+                deadline = GetDead(Durasi);
             }
         }
-
-        public User User { get; set; }
-
+        public static string GetDead(int Durasi)
+        {
+            DateTime dt = DateTime.Today.AddDays(Durasi);
+            return dt.ToShortDateString();
+        }
         public override string getName() => Nama;
 
     }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ReSchedule
 {
@@ -15,29 +11,24 @@ namespace ReSchedule
             {
                 Console.Write("\nPilihan anda: ");
                 string op = Console.ReadLine().ToLower();
-
-                if (op == "1" || op == "menu")
+                switch (op)
                 {
-                    x.Fungsi();
+                    case "1":
+                    case "menu":
+                        x.Fungsi();
+                        break;
+                    case "0":
+                    case "kembali":
+                        Program.Main();
+                        break;
+                    default:
+                        Shows.delay("Pilihan Salah! ");
+                        Menu();
+                        break;
                 }
-                else if (op == "0" || op == "exit")
-                {
-                    Show.delay("Bye bye " + User.getName() + "~");
-                    Environment.Exit(0);
-                }
-                else
-                {
-                    Show.delay("Pilihan Salah! ");
-                    Program.Main();
-                }
-                if (op == "e")
-                {
-                    break;
-                }
-                Show.entry(Entries.entries1);
+                Shows.entry(Entries.entries1);
             }
         }
-
         public override void Fungsi()
         {
             UserOpt x = new UserOpt();
@@ -46,39 +37,37 @@ namespace ReSchedule
                 Console.Write("\nPilihan anda: ");
                 string op = Console.ReadLine().ToLower();
 
-                if (op == Entries.entries2[0].getKey().ToLower() || op == Entries.entries2[0].getName().ToLower())
+                switch (op)
                 {
-                    Console.Clear();
-                    User.addTask();
-                    x.Fungsi();
+                    case "1":
+                    case "tambahkan":
+                        Console.Clear();
+                        Func.Add("Tugas");
+                        x.Fungsi();
+                        break;
+                    case "2":
+                    case "hapus":
+                        Console.Clear();
+                        Func.Delete("Tugas");
+                        x.Fungsi();
+                        break;
+                    case "3":
+                    case "tunjukan":
+                        Console.Clear();
+                        User.showTask();
+                        x.Fungsi();
+                        break;
+                    case "0":
+                    case "kembali":
+                        Console.Clear();
+                        x.Menu();
+                        break;
+                    default:
+                        Shows.delay("Pilihan Salah! ");
+                        x.Fungsi();
+                        break;
                 }
-                else if (op == Entries.entries2[1].getKey().ToLower() || op == Entries.entries2[1].getName().ToLower())
-                {
-                    Console.Clear();
-                    User.deleteTask();
-                    x.Fungsi();
-                }
-                else if (op == Entries.entries2[2].getKey().ToLower() || op == Entries.entries2[2].getName().ToLower())
-                {
-                    Console.Clear();
-                    User.showTask();
-                    x.Fungsi();
-                }
-                else if (op == Entries.entries2[3].getKey().ToLower() || op == Entries.entries2[3].getName().ToLower())
-                {
-                    Console.Clear();
-                    x.Menu();
-                }
-                else
-                {
-                    Show.delay("Pilihan Salah! ");
-                    x.Fungsi();
-                }
-                if (op == "e")
-                {
-                    break;
-                }
-                Show.entry(Entries.entries2);
+                Shows.entry(Entries.entries2);
             }
         }
     }

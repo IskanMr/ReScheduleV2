@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ReSchedule
 {
     public class User : Thing
     {
-        private static int Id;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        private static int id;
         private static string Name;
-        private static List<Tugas> TaskList = new List<Tugas>();
+        private ICollection<Tugas> listTugas;
         private static string objek = "Tugas";
 
-        public int ID
+        public int Id
         {
-            get { return Id; }
-            set { Id = value; }
+            get { return id; }
+            set { id = value; }
+        }
+        public ICollection<Tugas> ListTugas
+        {
+            get { return listTugas; }
+            set { listTugas = value; }
         }
         public string Nama
         {
@@ -28,25 +32,17 @@ namespace ReSchedule
             get { return objek; }
             set { objek = value; }
         }
-        public static List<Tugas> taskList
-        {
-            get { return TaskList; }
-            set { TaskList = value; }
-        }
-
-        public static void addTask() => Func.Add(Objek);
-        public static void deleteTask() => Func.Delete(Objek);
         public static void showTask()
         {
-            string opt = "1";
-            while (opt != "0")
+            string op = "1";
+            while (op == "1")
             {
-                Func.Show();
+                Func.Show(objek);
                 Console.Write("Ketik 0 untuk kembali! ");
-                opt = Console.ReadLine();
+                op = Console.ReadLine();
             }
         }
-
         public static string getName() => Name;
+        public static int getId() => id;
     }
 }

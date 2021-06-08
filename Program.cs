@@ -9,14 +9,35 @@ namespace ReSchedule
             using ReScContext context = new ReScContext();
             Console.Clear();
             Console.Title = "reSchedule";
-
-            Console.Write("Nama anda: ");
-            string Nama = Console.ReadLine();
-
-            context.Add(new User { Nama = Nama });
-
             UserOpt x = new UserOpt();
-            x.Menu();
+            while (true)
+            {
+                Shows.entry(Entries.entries3);
+                Console.Write("Pilihan Anda: ");
+                string opt = Console.ReadLine();
+                switch (opt)
+                {
+                    case "1":
+                        Func.Pick("User");
+                        break;
+                    case "2":
+                        Func.Add("User");
+                        Main();
+                        break;
+                    case "3":
+                        Func.Delete("User");
+                        Main();
+                        break;
+                    case "0":
+                        Shows.delay("Bye bye " + User.getName() + " ~");
+                        Environment.Exit(0);
+                        break;
+                    default:
+                        Shows.delay("Pilihan Salah! ");
+                        Main();
+                        break;
+                }
+            }
         }
     }
 }
