@@ -90,19 +90,22 @@ namespace ReSchedule{
                 }
             Console.WriteLine("\n");
         }
-        public static void Pick(string obj){
+        public static void Pick(string obj)
+        {
             using ReScContext context = new ReScContext();
             int opt = 1;
-            while (opt != 0){
+            while (opt != 0)
+            {
                 Show(obj);
                 Console.Write("Pilih Id " + obj + " yang diinginkan / 0 untuk kembali: ");
-                opt = Convert.ToInt32(Console.ReadLine()) ;
-                if (opt!=0){
-                    foreach (User user in context.Users) 
-                        if (user.Id == opt) 
+                opt = Convert.ToInt32(Console.ReadLine());
+                if (opt != 0)
+                {
+                    foreach (User user in context.Users)
+                        if (user.Id == opt)
                             new UserOpt().Menu();
                     Shows.delay("Id tidak valid");
-                }               
+                }
             }
         }
     }

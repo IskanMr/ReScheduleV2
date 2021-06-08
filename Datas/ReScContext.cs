@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 namespace ReSchedule{
     public class ReScContext : DbContext{
         public DbSet<User> Users { get; set; }
