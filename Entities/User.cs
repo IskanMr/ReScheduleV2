@@ -11,7 +11,6 @@ namespace ReSchedule
         private static string Name;
         private ICollection<Tugas> listTugas;
         private static string objek = "Tugas";
-
         public int Id
         {
             get { return id; }

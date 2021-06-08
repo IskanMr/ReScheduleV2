@@ -32,18 +32,17 @@ namespace ReSchedule
                             Console.Write("Durasi " + obj + " (Hari) \t\t: ");
                             int b = Convert.ToInt32(Console.ReadLine());
                             context.listTugas.Add(new Tugas() { Nama = a, Durasi = b, Deadline = Tugas.GetDead(b), userId = User.getId()});
-                            context.SaveChanges();
                         } 
                         else if(obj == "User")
                         {
-                            context.Users.Add(new User() { Nama = a});
-                            context.SaveChanges();
+                            User p = new User { Id = 0, Nama = a };
+                            context.Users.Add(p);
                         }
+                        context.SaveChanges();
                     }
                 }
             }
         }
-
         public static void Delete(string obj)
         {
             using ReScContext context = new ReScContext();
@@ -67,19 +66,29 @@ namespace ReSchedule
                     {
                         if (obj == "Tugas")
                         {
-                            foreach(Tugas tugas in context.listTugas)
+                            bool x = false;
+                            Tugas newTu = new Tugas();
+                            foreach (Tugas tugas in context.listTugas)
                             {
                                 if (tugas.Id == ops)
                                 {
-                                    context.listTugas.Remove(tugas);
-                                    op = false;
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    Shows.delay("Id yang dimasukan Salah!");
-                                }
+                                    newTu = tugas;
+                                    x = true;
+                                    break;
+                                }                                
                             }
+                            if (x)
+                            {
+                                context.listTugas.Remove(newTu);
+                                op = false;
+                            }
+                            else
+                            {
+                                Console.Clear();
+                                Shows.delay("Id " + ops + " tidak ditemukan!");
+                                Delete("Tugas");
+                            }
+
                         } 
                         else if (obj == "User")
                         {
@@ -92,11 +101,6 @@ namespace ReSchedule
                                     newUs = user;
                                     x = true;
                                     break;
-                                }
-                                else
-                                {
-                                    Console.Clear();
-                                    Shows.delay("Id yang dimasukan Salah!");
                                 }
                             }
                             if (x)
@@ -111,6 +115,12 @@ namespace ReSchedule
                                 context.Users.Remove(newUs);
                                 op = false;
                             }
+                            else
+                            {
+                                Console.Clear();
+                                Shows.delay("Id " + ops + " tidak ditemukan!");
+                                Delete("User");
+                            }
                         }
                     }                    
                     context.SaveChanges();
@@ -118,7 +128,6 @@ namespace ReSchedule
                 }
             }
         }
-
         public static void Show(string obj)
         {
             using ReScContext context = new ReScContext();
@@ -153,7 +162,6 @@ namespace ReSchedule
             }
             Console.WriteLine("\n");
         }
-
         public static void Pick(string obj)
         {
             using ReScContext context = new ReScContext();
