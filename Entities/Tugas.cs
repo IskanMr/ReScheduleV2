@@ -1,48 +1,38 @@
 ﻿using System;
 
-namespace ReSchedule
-{
-    public class Tugas : Def1, Thing
-    {
+namespace ReSchedule{
+    public class Tugas : Def1, Thing{
         private int ID;
         private int UserId;
         private string Name;
         private int Duration;
         private string deadline;
-        public int userId
-        {
+        public int userId{
             get { return UserId; }
             set { UserId = User.getId(); }
         }
-        public int Id
-        {
+        public int Id{
             get { return ID; }
             set { ID = value; }
         }
-        public string Nama
-        {
+        public string Nama{
             get { return Name; }
             set { Name = value; }
         }
-        public int Durasi
-        {
+        public int Durasi{
             get { return Duration; }
             set { Duration = value; }
         }
-        public string Deadline
-        {
+        public string Deadline{
             get { return deadline; }
             set 
             {
                 deadline = GetDead(Durasi);
             }
         }
-        public static string GetDead(int Durasi)
-        {
-            DateTime dt = DateTime.Today.AddDays(Durasi);
-            return dt.ToShortDateString();
+        public static string GetDead(int Durasi){
+            return DateTime.Today.AddDays(Durasi).ToShortDateString();
         }
         public override string getName() => Nama;
-
     }
 }

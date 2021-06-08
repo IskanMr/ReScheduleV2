@@ -1,24 +1,15 @@
 ﻿using System;
-
-namespace ReSchedule
-{
-    public class Opt : Def2
-    {
-        public override void Menu()
-        {
-            UserOpt x = new UserOpt();
-            while (true)
-            {
-                Console.Write("\nPilihan anda: ");
-                string op = Console.ReadLine().ToLower();
-                switch (op)
-                {
+namespace ReSchedule{
+    public class Opt : Def2{
+        public override void Menu(){
+            while (true){
+                Console.Write("\nPilihan anda: "); 
+                string op = Console.ReadLine();
+                switch (op){
                     case "1":
-                    case "menu":
-                        x.Fungsi();
+                        new UserOpt().Fungsi();
                         break;
                     case "0":
-                    case "kembali":
                         Program.Main();
                         break;
                     default:
@@ -29,42 +20,34 @@ namespace ReSchedule
                 Shows.entry(Entries.entries1);
             }
         }
-        public override void Fungsi()
-        {
-            UserOpt x = new UserOpt();
-            while (true)
-            {
-                Console.Write("\nPilihan anda: ");
-                string op = Console.ReadLine().ToLower();
-
-                switch (op)
-                {
+        public override void Fungsi(){
+            while (true){
+                Console.Write("\nPilihan anda: "); 
+                string op = Console.ReadLine();
+                switch (op){
                     case "1":
-                    case "tambahkan":
-                        Console.Clear();
                         Func.Add("Tugas");
-                        x.Fungsi();
+                        new UserOpt().Fungsi();
                         break;
                     case "2":
-                    case "hapus":
-                        Console.Clear();
                         Func.Delete("Tugas");
-                        x.Fungsi();
+                        new UserOpt().Fungsi();
                         break;
                     case "3":
-                    case "tunjukan":
-                        Console.Clear();
-                        User.showTask();
-                        x.Fungsi();
+                        string opt = "1";
+                        while (opt != "0"){
+                            Func.Show("Tugas");
+                            Console.Write("Ketik 0 untuk kembali! ");
+                            opt = Console.ReadLine();
+                        }
+                        new UserOpt().Fungsi();
                         break;
                     case "0":
-                    case "kembali":
-                        Console.Clear();
-                        x.Menu();
+                        new UserOpt().Menu();
                         break;
                     default:
                         Shows.delay("Pilihan Salah! ");
-                        x.Fungsi();
+                        new UserOpt().Fungsi();
                         break;
                 }
                 Shows.entry(Entries.entries2);
