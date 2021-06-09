@@ -1,7 +1,5 @@
-﻿namespace ReSchedule
-{
-    public interface Thing
-    {
+﻿namespace ReSchedule{
+    public interface Thing{
         string Nama { get; set; }
     }
 }
